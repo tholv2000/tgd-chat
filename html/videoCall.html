@@ -48,7 +48,7 @@
 		const callBtn = document.getElementById('callBtn');
 		const answerBtn = document.getElementById('answerBtn');
 
-		let signalingWebsocket = new WebSocket("ws://https://chatwebapp-websocketserver.herokuapp.com/videochat");
+		let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokuapp.com/videochat");
 
 		signalingWebsocket.onmessage = async function(msg) {
 			console.log("Got message", msg.data);
