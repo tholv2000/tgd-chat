@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta charset="UTF-8">
     <title>TGD chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -43,7 +44,10 @@
         <div class="send-box">
             <div>
                 <input type="file" id="upload_file" onchange="uploadFile(event)">
-                <button class="primary" id="button_upload">Gửi file</button>
+                <button class="btn btn-primary" id="button_upload">Gửi file</button>
+            </div>
+            <div style="margin-left: 5px;">
+                <button class="btn btn-primary" id="callBtn">Call</button>
             </div>
             <form id="messageForm" name="messageForm">
                 <div class="form-group">
@@ -55,10 +59,46 @@
             </form>
         </div>
     </div>
+
+    <div class="modal" id="modal-notice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Bạn có một cuộc họp video
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-primary" id="answerBtn">Trả lời</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div id="video-call" class="hidden">
+    <div>
+        <h3 style="margin: 5px">Other Person</h3>
+        <video style="width: 50vh; height: 50vh;" id="remoteVideo" controls autoplay></video>
+    </div>
+    
+    <div>
+        <h3 style="margin: 5px">You</h3>
+        <video style="width: 50vh; height: 50vh;" id="localVideo" controls autoplay></video>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/simplepeer.min.js"></script>
 <script src="js/main.js" charset="utf-8"></script>
+<script src="js/videoCall.js" charset="utf-8"></script>
 </body>
 </html>
