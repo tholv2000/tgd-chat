@@ -27,9 +27,12 @@ body:before {
     position: absolute;
     top: 0;
     left: 0;
-    background: #128ff2;
     content: "";
     z-index: 0;
+}
+
+.content-between {
+    justify-content: space-evenly;
 }
 
 .clearfix:after {
@@ -154,10 +157,6 @@ button.accent {
 
 .send-box {
     display: flex;
-}
-
-.group-upload {
-    
 }
 
 #chat-page ul {
