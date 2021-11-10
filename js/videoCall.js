@@ -41,7 +41,7 @@ signalingWebsocket.onmessage = async function(msg) {
 
 signalingWebsocket.onopen = () => {
     console.log('Opened');
-    signalingWebsocket.send(JSON.stringify(signal));
+    signalingWebsocket.send(JSON.stringify(signalInit));
 }
 
 signalingWebsocket.onerror = () => {
