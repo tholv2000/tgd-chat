@@ -6,6 +6,7 @@ let peerConnection = new SimplePeer({
 let offerSignal;
 let sendSignal;
 let firstTime = true;
+let signal;
 
 const callBtn = document.getElementById('callBtn');
 const answerBtn = document.getElementById('answerBtn');
@@ -38,6 +39,7 @@ signalingWebsocket.onmessage = async function(msg) {
 
 signalingWebsocket.onopen = () => {
     console.log('Opened');
+    signalingWebsocket.send(JSON.stringify(signal));
 }
 
 signalingWebsocket.onerror = () => {
@@ -55,6 +57,7 @@ peerConnection.on('data', (data) => {
 })
 
 peerConnection.on('signal', (data) => {
+    signal = data;
     if (signalingWebsocket.readyState === 1) {
         signalingWebsocket.send(JSON.stringify(data));
     }
