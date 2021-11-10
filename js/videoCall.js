@@ -6,7 +6,7 @@ let peerConnection = new SimplePeer({
 let offerSignal;
 let sendSignal;
 let firstTime = true;
-let signal;
+let signalInit;
 
 const callBtn = document.getElementById('callBtn');
 const answerBtn = document.getElementById('answerBtn');
@@ -17,8 +17,10 @@ let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokua
 // let signalingWebsocket = new WebSocket("ws://localhost:8080/videochat");
 
 signalingWebsocket.onmessage = async function(msg) {
-    const signal = JSON.parse(msg.data);
-    console.log(signal);
+    let signal;
+    if (msg.data) {
+        JSON.parse(msg.data);
+    }
     if (signal.type === "offer") {
         offerSignal = signal;
         if (firstTime) {
@@ -57,7 +59,7 @@ peerConnection.on('data', (data) => {
 })
 
 peerConnection.on('signal', (data) => {
-    signal = data;
+    signalInit = data;
     if (signalingWebsocket.readyState === 1) {
         signalingWebsocket.send(JSON.stringify(data));
     }
