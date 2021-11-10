@@ -12,7 +12,8 @@ const answerBtn = document.getElementById('answerBtn');
 const videoGrid = document.getElementById('video-call');
 const answerNotice = document.getElementById('modal-notice')
 
-let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokuapp.com/videochat");
+// let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokuapp.com/videochat");
+let signalingWebsocket = new WebSocket("ws://localhost:8080/videochat");
 
 signalingWebsocket.onmessage = async function(msg) {
     const signal = JSON.parse(msg.data);
@@ -54,8 +55,9 @@ peerConnection.on('data', (data) => {
 })
 
 peerConnection.on('signal', (data) => {
-    console.log(data);
-    signalingWebsocket.send(JSON.stringify(data));
+    if (signalingWebsocket.readyState === 1) {
+        signalingWebsocket.send(JSON.stringify(data));
+    }
 })
 
 peerConnection.on('stream', async (stream) => {
