@@ -18,8 +18,9 @@ let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokua
 
 signalingWebsocket.onmessage = async function(msg) {
     let signal;
-    if (msg.data) {
-        JSON.parse(msg.data);
+    console.log(msg.data);
+    if (msg.data !== undefined) {
+        signal = JSON.parse(msg.data);
     }
     if (signal.type === "offer") {
         offerSignal = signal;
