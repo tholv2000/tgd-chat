@@ -210,18 +210,6 @@ function uploadFile(e) {
     }
 }
 
-/*function download(data) {
-    let linkSource = "data:application/octet-stream;base64," + data;
-    let downloadLink = document.createElement('a');
-    filename = file.name;
-    downloadLink.href = linkSource;
-    downloadLink.download = filename;
-    downloadLink.click();
-}
-
-function downloadFile() {
-    download(base64File);
-}*/
 usernameForm.addEventListener('submit', connect, true);
 messageForm.addEventListener('submit', sendMessage, true);
 document.getElementById("button_upload").onclick = function() {
