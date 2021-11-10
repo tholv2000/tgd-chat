@@ -12,8 +12,8 @@ const answerBtn = document.getElementById('answerBtn');
 const videoGrid = document.getElementById('video-call');
 const answerNotice = document.getElementById('modal-notice')
 
-// let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokuapp.com/videochat");
-let signalingWebsocket = new WebSocket("ws://localhost:8080/videochat");
+let signalingWebsocket = new WebSocket("wss://chatwebapp-websocketserver.herokuapp.com/videochat");
+// let signalingWebsocket = new WebSocket("ws://localhost:8080/videochat");
 
 signalingWebsocket.onmessage = async function(msg) {
     const signal = JSON.parse(msg.data);
